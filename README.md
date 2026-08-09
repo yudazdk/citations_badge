@@ -1,24 +1,62 @@
-# README
+# Citations API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails API for serving citation records used by the citations badge widget.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 3.2.2
+- Rails 7.2.3.2
+- Bundler
+- SQLite3
 
-* System dependencies
+## Setup
 
-* Configuration
+```bash
+bundle install
+rails db:create db:migrate db:seed
+rails s
+```
 
-* Database creation
+The API runs at:
 
-* Database initialization
+```text
+http://localhost:3000
+```
 
-* How to run the test suite
+## API
 
-* Services (job queues, cache servers, search engines, etc.)
+### Get all citations
 
-* Deployment instructions
+```http
+GET /api/citations
+```
 
-* ...
+Default ordering is newest first.
+
+Oldest first:
+
+```http
+GET /api/citations?order=asc
+```
+
+### Get a citation by ID
+
+```http
+GET /api/citations/:id
+```
+
+Example:
+
+```text
+http://localhost:3000/api/citations/1
+```
+
+## Data
+
+Citation records are loaded from the provided sample data by:
+
+```text
+db/seeds.rb
+```
+
+CORS is enabled to allow the frontend widget to access the API from localhost.
