@@ -9,6 +9,12 @@ Rails API for serving citation records used by the citations badge widget.
 - Bundler
 - SQLite3
 
+## Repository:
+
+```bash
+git clone https://github.com/yudazdk/citations_client.git
+``` 
+
 ## Setup
 
 ```bash
