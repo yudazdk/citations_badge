@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require "json"
+
+citations_path = Rails.root.join("db/data/helix_lab_instruments__p_1000__sample_records.json")
+citations = JSON.parse(File.read(citations_path))
+
+citations.each do |citation_attributes|
+  citation = Citation.find_or_initialize_by(doi: citation_attributes.fetch("doi"))
+  citation.assign_attributes(citation_attributes)
+  citation.save!
+end
